@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <title>Coronavirus App</title>
+</head>
+
+
+<body>
+    <div class="container mx-auto mt-5">
+        <div class="col-md-10 mx-auto">
+            <div class="card mt-20">
+                <div class="card-header text-center">
+                    <H3>Coronavirus Hoje</H3>
+                </div>
+                <div class="col-md-12 mx-auto">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Ultima Actualizar</label>
+                                        <label id="data" class="col-lg-3 col-form-label"></label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Total de Casos</label>
+                                        <label id="totalCases" class="col-lg-3 col-form-label"></label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Novos Casos</label>
+                                        <label id="newCases" class="col-lg-3 col-form-label"></label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Total de Mortes</label>
+                                        <label id="totalDeaths" class="col-lg-3 col-form-label"></label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 col-form-label">Total de Recuperados</label>
+                                        <label id="totalRecovery" class="col-lg-3 col-form-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button onclick="onActualizar()" type="button"
+                                    class="btn btn-success submit-btn">Actualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const url = 'https://api.covid19api.com/summary';
+        fetch(url)
+            .then((resp) => resp.json()) // Transform the data into json
+            .then((data) => {
+                document.getElementById('totalCases').innerHTML = data.Global.TotalConfirmed;
+                document.getElementById('newCases').innerHTML = data.Global.NewConfirmed;
+                document.getElementById('totalDeaths').innerHTML = data.Global.TotalDeaths;
+                document.getElementById('totalRecovery').label = data.Global.TotalRecovered;
+                document.getElementById('data').label = data.Date;
+            });
+    </script>
+</body>
+
+</html>
